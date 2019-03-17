@@ -1,0 +1,22 @@
+C0-OS2.ASM
+
+This was written for and assembled with IBM's Macro Assembler 2. I know
+that there are newer and better, but I'm cheap. I had to use DEBUG to patch
+the .OBJ file to change the three PUBLIC symbols (_exit, _main & __exit) to
+lower-case. because of a bug in the assembler, the PUSH byte literal
+doesn't assemble right, so I used DBs instead. Note that nothing is done
+about command line arguments or the environment. I kept it simple for the
+inital round of development.
+
+MAIN-OS2.C
+
+Ruthlessly modified version of the MAIN.C that comes with TC. Being cheap,
+I haven't upgraded to TC1.5 yet. Compile with the LARGE memory model.
+
+LINKing
+
+To link the mess together, you need the version on LINK that came with OS/2
+and the DOSCALLS library. IBM's install program puts them into the \OS2 sub-
+directory. So, to link, you say:
+           C:\OS2\LINK MAIN-OS2+C0-OS2,,,C:\OS2\DOSCALLS;
+
